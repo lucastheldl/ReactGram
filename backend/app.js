@@ -21,7 +21,7 @@ app.use("uploads", express.static(path.join(__dirname, "/uploads")));
 require("./config/db.js");
 
 //rotas
-const router = require("./routes/Router");
+const router = require("./routes/Router.js");
 
 app.use(router);
 

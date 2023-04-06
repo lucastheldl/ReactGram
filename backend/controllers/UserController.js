@@ -52,11 +52,44 @@ const register = async (req, res) => {
   res.send("Registro");
 };
 //sign in user
-const login = ({ req, res }) => {
-  res.send("login");
+const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  //check if user exists
+  if (!user) {
+    res.status(404).json({ errors: ["O usuário não existe"] });
+    return;
+  }
+  //check if password match
+  if (!(await bcrypt.compare(password, user.password))) {
+    res.status(422).json({ errors: ["Senha incorreta"] });
+    return;
+  }
+
+  //return user and token
+  res.status(201).json({
+    _id: user._id,
+    prifileImage: user.profileImg,
+    token: GenerateToken(user._id),
+  });
+};
+//get Current LoggedIn user
+
+const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  res.status(200).json(user);
+};
+
+//update user
+const update = async (req, res) => {
+  res.send("update");
 };
 
 module.exports = {
   register,
   login,
+  getCurrentUser,
+  update,
 };

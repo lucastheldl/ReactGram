@@ -7,6 +7,7 @@ const {
   login,
   getCurrentUser,
   update,
+  getUserById,
 } = require("../controllers/UserController");
 
 //middlewares
@@ -23,6 +24,7 @@ const { imageUpload } = require("../middlewares/imageUpload");
 router.post("/register", userCreateValidation(), validade, register);
 router.post("/login", loginValidation(), validade, login);
 router.get("/profile", authGuard, getCurrentUser);
+router.get("/:id", getUserById);
 router.put(
   "/",
   authGuard,

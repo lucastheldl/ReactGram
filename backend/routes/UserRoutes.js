@@ -28,7 +28,8 @@ router.put(
   authGuard,
   userUpdateValidation(),
   validade,
-  imageUpload.single("profileImage", update)
+  imageUpload.single("profileImage"),
+  update
 );
 
 module.exports = router;

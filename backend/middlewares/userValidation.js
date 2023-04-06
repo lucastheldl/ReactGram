@@ -40,7 +40,6 @@ const userUpdateValidation = () => {
       .optional()
       .isLength({ min: 5 })
       .withMessage("A senha precisa ter 5 caracteres."),
-    ,
   ];
 };
 

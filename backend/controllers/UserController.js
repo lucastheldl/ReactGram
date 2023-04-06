@@ -1,5 +1,5 @@
 const User = require("../models/Users");
-const conn = require("../config/db");
+//const conn = require("../config/db");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -84,7 +84,38 @@ const getCurrentUser = async (req, res) => {
 
 //update user
 const update = async (req, res) => {
-  res.send("update");
+  const { name, password, bio } = req.body;
+  //res.send("update");
+
+  let profileImage = null;
+  if (req.file) {
+    profileImage = req.file.filename;
+  }
+
+  const reqUser = req.user;
+
+  const user = await User.findById(reqUser._id).select("-password");
+
+  if (name) {
+    user.name = name;
+  }
+  if (password) {
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    user.password = passwordHash;
+  }
+
+  if (profileImage) {
+    user.profileImg = profileImage;
+  }
+  if (bio) {
+    user.bio = bio;
+  }
+
+  await user.save();
+
+  res.status(200).json(user);
 };
 
 module.exports = {

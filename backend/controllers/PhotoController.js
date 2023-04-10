@@ -31,10 +31,10 @@ const insertPhoto = async (req, res) => {
 
 const deletePhoto = async (req, res) => {
   const { id } = req.params;
-
+  console.log(id);
   const reqUser = req.user;
   try {
-    const photo = await Photo.findById(mongoose.Types.ObjectId(id));
+    const photo = await Photo.findById(id);
 
     //Check if photo exist
     if (!photo) {
@@ -45,9 +45,10 @@ const deletePhoto = async (req, res) => {
     //Check if photo belongs to user
     if (!photo.userId.equals(reqUser._id)) {
       res.status(422).json({ errors: ["Usuário inválido"] });
+      return;
     }
     await Photo.findByIdAndDelete(photo._id);
-    res.statys(200).json({
+    res.status(200).json({
       id: photo._id,
       message: ["Foto excluida com sucesso"],
     });

@@ -3,7 +3,6 @@ const path = require("path");
 const { isUndefined } = require("util");
 
 //destination  to store image
-
 const imageStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     let folder = "";

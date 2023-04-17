@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import './App.css'
+import { Router } from './Router'
+
+
 
 function App() {
 
   return (
-    <h1>frontend</h1>
+    <div>
+      <Router/>
+    </div>
   )
 }
 

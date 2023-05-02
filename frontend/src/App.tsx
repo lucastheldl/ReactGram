@@ -14,11 +14,11 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-      <Navbar/>
-      <div className="container">
-        <Router/>
-      </div>
-      <Footer/>
+        <Navbar/>
+          <div className="container">
+            <Router/>
+          </div>
+        <Footer/>
       </BrowserRouter>
     </div>
   )

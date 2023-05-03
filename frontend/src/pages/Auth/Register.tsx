@@ -12,7 +12,7 @@ export function Register(){
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [confirmPassword,setConfirmPassword] = useState("");
-  
+
   function handleSubmit(e: FormEvent<HTMLFormElement>){
     e.preventDefault();
     const user={
@@ -29,10 +29,21 @@ export function Register(){
       <h2>ReactGram</h2>
       <p className="subtitle">Cadastre-se para ver as fotos dos seus amigos.</p>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Nome" onChange={(e)=> setName(e.target.value)} value={name || ""}/>
-        <input type="email" placeholder="E-mail" onChange={(e)=> setEmail(e.target.value)} value={email || ""}/>
-        <input type="password" placeholder="Senha" onChange={(e)=> setPassword(e.target.value)} value={password || ""}/>
-        <input type="password" placeholder="Confirmar senha" onChange={(e)=> setConfirmPassword(e.target.value)} value={confirmPassword || ""}/>
+        <input type="text" placeholder="Nome"
+        onChange={(e)=> setName(e.target.value)}
+        value={name || ""}/>
+
+        <input type="email" placeholder="E-mail"
+        onChange={(e)=> setEmail(e.target.value)}
+        value={email || ""}/>
+
+        <input type="password" placeholder="Senha"
+        onChange={(e)=> setPassword(e.target.value)}
+        value={password || ""}/>
+
+        <input type="password" placeholder="Confirmar senha"
+        onChange={(e)=> setConfirmPassword(e.target.value)}
+        value={confirmPassword || ""}/>
         <input type="submit" placeholder="Confirmar" />
       </form>
       <p>

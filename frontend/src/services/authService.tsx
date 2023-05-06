@@ -14,7 +14,9 @@ const register = async(data:any)=>{
     }
   } catch (error) {
     console.log(error)
+    return error
   }
+  
 }
 
 const authService = {

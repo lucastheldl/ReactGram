@@ -22,3 +22,22 @@ export const register = createAsyncThunk("auth/register",async(user,thunkAPI) =>
 
   return data;
 })
+
+export const authSlice = createSlice({
+  name:"auth",
+  initialState,
+  reducers:{
+    reset:(state) =>{
+      state.loading = false;
+      state.error = false;
+      state.success = false;
+
+    },
+  },
+  extraReducers:(builder) =>{
+    builder.addCase(register.pending,(state)=>{
+      state.loading=true;
+      state.error=false;
+    })
+  }
+})
